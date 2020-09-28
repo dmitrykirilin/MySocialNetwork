@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html"; charset=UTF-8 />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body class="text-center">
+
+<header th:insert="blocks/header :: header"></header>
+
+<div th:if="${!isCurrent}">
+    <div class="container mt-5">
+        <div th:if="${!isHaveSubscription}">
+            <a role="button" class="btn btn-primary" th:href="'/subscribe/' + ${user.id}">Подписаться</a>
+        </div>
+        <div th:if="${isHaveSubscription}">
+            <a role="button" class="btn btn-danger" th:href="'/unsubscribe/' + ${user.id}">Отписаться</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+                <div class="card ml-5">
+                    <div class="card-body">
+                        <p class="card-text"><small class="text-muted">Подписки</small></p>
+                        <p class="card-text">
+                            <a th:href="'/main/subscriptions/' + ${user.id}">[[${subscriptionsCount}]]</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="card mr-5">
+                    <div class="card-body">
+                        <p class="card-text"><small class="text-muted">Подписчики</small></p>
+                        <p class="card-text">
+                            <a th:href="'/main/subscribers/' + ${user.id}">[[${subscribersCount}]]</a>
+                        </p>
+                    </div>
+                </div>
+    </div>
+</div>
+
+<h1>БЛОГ</h1>
+<div class="container mt-5">
+    <div class="card-columns">
+
+        <div th:each="post : ${posts}">
+            <div class="card alert alert-info mt-2">
+                <h5 class="card-title" th:text="${post.title}"></h5>
+                <p class="card-text" th:text="${post.full_text}"></p>
+                <a th:href="'/post/' + ${post.id}" class="btn btn-warning">More...</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--<footer th:insert="blocks/footer :: footer"></footer>-->
+
+</body>
+</html>

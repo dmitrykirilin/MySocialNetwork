@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html"; charset=UTF-8 />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body class="text-center">
+
+<header th:insert="blocks/header :: header"></header>
+
+    <div class="container mt-5">
+<!--        <div th:if="${param.error}">-->
+<!--            Invalid username and password.-->
+<!--        </div>-->
+<!--        <div th:if="${param.logout}">-->
+<!--            You have been logged out.-->
+<!--        </div>-->
+
+        <form class="form-signin" th:action="@{/profile}" method="post">
+
+            <label for="Nickname" class="sr-only">Nickname</label>
+            <input type="text" name="username" id="Nickname" class="form-control" placeholder="Password" required="" readonly th:value="${user.username}"><br>
+
+            <label for="Password" class="sr-only">Password</label>
+            <input type="password" name="password" id="Password" class="form-control" th:attrappend="class=${passwordError} ? ' is-invalid' : ''" placeholder="Password" th:value="${user.password}">
+            <div th:if="${not #strings.isEmpty(passwordError)}" class="invalid-feedback">
+                [[${passwordError}]]
+            </div>
+            <br>
+
+            <label for="Password2" class="sr-only">Retype password</label>
+            <input type="password" name="password2" id="Password2" class="form-control" th:attrappend="class=${password2Error} ? ' is-invalid' : ''" placeholder="Password" required="" th:value="${user.password}">
+            <div th:if="${not #strings.isEmpty(password2Error)}" class="invalid-feedback">
+                [[${password2Error}]]
+            </div>
+            <br>
+
+            <label for="inputEmail" class="sr-only">Email</label>
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="example@example.com" required="" th:value="${user.email}">
+            <br>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Подтвердить</button>
+
+        </form>
+    </div>
+<footer th:insert="blocks/footer :: footer"></footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+</html>

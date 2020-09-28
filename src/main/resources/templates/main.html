@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title></title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body class="text-center">
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5">
+    <div class="card-columns">
+        <h1>БЛОГ САЙТА</h1>
+        <div th:each="post : ${posts}">
+            <div class="card alert alert-info mt-2">
+                <h3 class="card-title" th:text="${post.title}"/>
+                <p class="card-body" th:text="${post.full_text}"></p>
+                <a th:href="'/post/' + ${post.id}" class="btn btn-warning">More...</a>
+                <a th:href="'/blog/' + ${post.getAuthor().id}" th:text="${post.getAuthor().username}" class="card-link">Автор</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--<footer th:insert="blocks/footer :: footer"></footer>-->
+
+
+</body>
+
+</html>

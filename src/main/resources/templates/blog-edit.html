@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование статьи</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset=UTF-8 />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body class="text-center">
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Редактирование статьи</h1>
+        <form method="post" th:object="${post}">
+            <input type="text" th:value="${post.title}" th:attrappend="class=${#fields.hasErrors('title')} ? ' is-invalid' : ''" name="title" placeholder="Введите название статьи" class="form-control">
+            <div th:if="${#fields.hasErrors('title')}">
+                <p th:each="err : ${#fields.errors('title')}" th:text="${err}"></p>
+            </div>
+            <br>
+
+            <textarea name="full_text" th:text="${post.full_text}" th:attrappend="class=${#fields.hasErrors('full_text')} ? ' is-invalid' : ''" class="form-control"/>
+            <div th:if="${#fields.hasErrors('full_text')}">
+                <p th:each="err : ${#fields.errors('full_text')}" th:text="${err}"></p>
+            </div>
+            <br>
+
+            <button type="submit" class="btn btn-success">Обновить</button><br>
+        </form>
+    </div>
+
+<!--<footer th:insert="blocks/footer :: footer"></footer>-->
+
+</body>
+</html>

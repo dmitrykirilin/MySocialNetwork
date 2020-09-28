@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body class="text-center">
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5">
+    <h3 th:text="${user}"></h3>
+        <h5 th:text="${type}"></h5>
+        <ul class="list-group list-group-horizontal-xl">
+            <div th:each="item : ${userList}">
+            <li class="list-group-item"><a th:href="'/blog/' + ${item.getId()}">[[${item.username}]]</a></li>
+            </div>
+        </ul>
+</div>
+
+<!--<footer th:insert="blocks/footer :: footer"></footer>-->
+
+<script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+
+<script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
