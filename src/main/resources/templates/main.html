@@ -8,9 +8,11 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container mt-5">
+    <h1>БЛОГ САЙТА</h1>
+    <div th:insert="blocks/pager :: pager"></div>
     <div class="card-columns">
-        <h1>БЛОГ САЙТА</h1>
-        <div th:each="post : ${posts}">
+
+        <div th:each="post : ${page.content}">
             <div class="card alert alert-info mt-2">
                 <h3 class="card-title" th:text="${post.title}"/>
                 <p class="card-body" th:text="${post.full_text}"></p>
@@ -22,7 +24,7 @@
         </div>
     </div>
 </div>
-
+<div th:insert="blocks/pager :: pager"></div>
 <!--<footer th:insert="blocks/footer :: footer"></footer>-->
 
 

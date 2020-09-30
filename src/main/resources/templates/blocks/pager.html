@@ -1,0 +1,33 @@
+<div th:fragment="pager" xmlns:th="http://www.thymeleaf.org" class="mt-2">
+    <span>Страница:</span>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" th:href="${url} + '?page=' + ${page.getNumber() - 1} + '&size=' + ${page.getSize()}">Previous</a>
+            </li>
+
+            <div th:each="item : ${#numbers.sequence( 1, page.getTotalPages(), 1)}">
+            <li class="page-item">
+                <a class="page-link" th:href="${url} + '?page=' + ${item - 1} + '&size=' + ${page.getSize()}">[[${item}]]</a>
+            </li>
+
+            </div>
+            <li class="page-item">
+                <a class="page-link" th:href="${url} + '?page=' + ${page.getNumber() + 1} + '&size=' + ${page.getSize()}">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+    <span>Элементов на странице:</span>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+            <div th:each="size : ${#numbers.sequence( 3, 12, 3)}">
+                <li class="page-item">
+                    <a class="page-link" th:href="${url} + '?page=' + ${page.getNumber()} + '&size=' + ${size}">[[${size}]]</a>
+                </li>
+
+            </div>
+        </ul>
+    </nav>
+</div>
